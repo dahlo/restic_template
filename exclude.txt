@@ -1,0 +1,181 @@
+/home/*/NoBackup/*
+/home/*/Downloads/*
+
+/home/*/.ecryptfs
+/home/*/.cache
+/home/*/.gvfs
+/home/*/.local/share/gvfs-metadata
+/home/*/.dbus
+/home/*/.Trash
+/home/*/.local/share/Trash
+/home/*/.cddb
+/home/*/.aptitude
+/home/*/.singularity
+
+###############################################
+# Directories, probably not worth a backup    #
+# (uncomment the files you don't need)        #
+###############################################
+
+/home/*/.android
+/home/*/.IntelliJIdea*
+/home/*/.AndroidStudio*
+/home/*/Android/Sdk
+/home/*/.gradle
+#/home/*/.gvm
+#/home/*/.grails/
+#/home/*/.grails_history
+#/home/*/.kde/share/apps/nepomuk
+#/home/*/.local/share/notbit
+#/home/*/.local/libvirt
+#/home/*/.vagrant
+#/home/*/.vagrant.d
+/home/*/.wine
+#/home/*/.twister
+#/home/*/twister
+#*Popcorntime*
+#/Scribus
+#/VirtualBox*
+#
+## Add Game Folders here:
+#
+#/games
+/home/*/.local/share/Steam
+/home/*/.steam
+#Steam
+/home/*/.minecraft
+/home/*/.PlayOnLinux
+
+# Adobe and Flash
+/home/*/.adobe
+/home/*/.macromedia
+
+# Files
+/home/*/.xsession-errors
+/home/*/.recently-used
+/home/*/.recently-used.xbel
+/home/*/.thumbnails
+/home/*/.Xauthority
+/home/*/.ICEauthority
+/home/*/.gksu.lock
+/home/*/.pulse
+/home/*/.pulse-cookie
+/home/*/.esd_auth
+
+# Thunderbird Cache in your profile folder
+/home/*/.thunderbird
+/home/*/.thunderbird/*/Cache
+
+# KDE specific
+/home/*/.kde/share/apps/RecentDocuments
+/home/*/.kde/share/apps/klipper
+/home/*/.kde/share/apps/okular/docdata
+/home/*/.kde/share/apps/gwenview/recentfolders
+/home/*/.kde/share/apps/kmess/displaypics
+/home/*/.kde/share/apps/kmess/customemoticons
+
+# Firefox
+/home/*/.mozilla/firefox/*/storage
+/home/*/.mozilla/firefox/*/Cache
+# in case Fx crashes dumps will be stored in this
+/home/*/.mozilla/firefox/*/minidumps
+# session-specific
+/home/*/.mozilla/firefox/*/.parentlock
+# phishing database, recreated
+/home/*/.mozilla/firefox/*/urlclassifier3.sqlite
+# blacklisted extensions
+/home/*/.mozilla/firefox/*/blocklist.xml
+# extension database, recreated on startup
+/home/*/.mozilla/firefox/*/extensions.sqlite
+/home/*/.mozilla/firefox/*/extensions.sqlite-journal
+/home/*/.mozilla/firefox/*/extensions.rdf
+/home/*/.mozilla/firefox/*/extensions.ini
+/home/*/.mozilla/firefox/*/extensions.cache
+# cached UI data, recreated
+/home/*/.mozilla/firefox/*/XUL.mfasl
+/home/*/.mozilla/firefox/*/XPC.mfasl
+/home/*/.mozilla/firefox/*/xpti.dat
+/home/*/.mozilla/firefox/*/compreg.dat
+# cached plugin data, recreated
+/home/*/.mozilla/firefox/*/pluginreg.dat
+
+# Opera
+/home/*/.opera/temporary_downloads
+/home/*/.opera/cache
+/home/*/.opera/thumbnails
+/home/*/.opera/opcache
+/home/*/.opera/icons
+/home/*/.opera/application_cache
+/home/*/.opera/widgets/*/cache
+/home/*/.opera/lock
+
+# GnuPG
+/home/*/.gnupg/rnd
+/home/*/.gnupg/random_seed
+/home/*/.gnupg/.#*
+/home/*/.gnupg/*.lock
+/home/*/.gnupg/gpg-agent-info-*
+
+# Chromium
+/home/*/.config/chromium/Default/Local Storage
+/home/*/.config/chromium/Default/Session Storage
+/home/*/.config/chromium/Default/Application Cache
+/home/*/.config/chromium/Default/Archived History
+/home/*/.config/chromium/Default/History
+/home/*/.config/chromium/Default/Favicons
+
+# Electron apps seem to do this
+/home/*/.config/**/Cache
+/home/*/.config/**/GPUCache
+/home/*/.config/**/ShaderCache
+/home/*/snap/**/.config/**/Cache
+/home/*/snap/**/.config/**/GPUCache
+/home/*/snap/**/.config/**/ShaderCache
+
+# Indexer
+/home/*/.local/share/baloo
+/home/*/.local/share/zeitgeist
+/home/*/.local/share/akonadi
+
+# Misc
+# pidgin
+/home/*/.pulse/icons
+/home/*/.java/deployment/cache
+/home/*/.icedteaplugin
+/home/*/.icedtea
+/home/*/.gnome2/epiphany/favicon_cache
+# to avoid problems, let Dropbox re-create these
+/home/*/.dropbox
+/home/*/.dropbox-dist
+# Ivy2
+/home/*/.ivy2
+
+###########################
+#  PROGRAMMING LANGUAGES  #
+###########################
+
+# Local repositories (added by errantlinguist on 2015-04-13):
+/home/*/.m2/repository
+
+# Maven target
+target/*
+
+# Scala stuff
+# Coursier cache (Scala fetch libraries)
+/home/*/.coursier/cache
+/home/*/.sbt
+
+# Haskell
+/home/*/.stack
+
+# Node Package Manager cache
+/home/*/.npm
+
+# Eclipse
+/home/*/.eclipse
+/home/*/workspace/.metadata
+
+# Python virtual env
+/home/*/.venv-py3
+
+# ------------------------
