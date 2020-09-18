@@ -1,3 +1,5 @@
+### SFTP start
+
 # init repo
 restic init \
     --repo sftp://user@hosturl:2222//mnt/usb_hdd/backup/restic/repo/ \
@@ -14,3 +16,53 @@ sudo restic backup \
     /home/ \
     /etc/ \
     /var/lib/docker/volumes 
+
+### SFTP end
+
+
+
+
+
+
+
+
+### REST SERVER start
+
+## on server start
+# pull container
+docker pull restic/rest-server
+
+# generate certificates, put in repo root (/mnt/usb_hdd/backup/restic/repo/)
+openssl genrsa -out private_key 2048
+openssl req -new -x509 -key private_key -out public_key -days 3650
+
+# start container, should start whenever the computer is started.
+# if not, start with docker start rest_server
+docker run --env OPTIONS="--tls" -p 8000:8000 -v /mnt/usb_hdd/backup/restic/repo/:/data --name rest_server --restart always restic/rest-server
+
+# create user
+# NOT WORKING? docker exec -it rest_server create_user username
+# create the .htpasswd file manually, since -B is missing in the docker container
+# Run in the container
+docker exec -it rest_server sh
+cd /data
+htpasswd -B -c .htpasswd username
+
+## on server end
+
+## on client start
+
+# download the public key generated on the server to the client as /home/user/public_key in this example. Will be used when connecting, to avoid restic dying if you are using self-signed certs.
+
+# init the repo, repo password from /home/user/restic_template/restic_password file, using the same file as the https login password
+restic init --repo rest:https://username:$(cat /home/user/restic_template/restic_password)@hosturl:8000  --password-file /home/user/restic_template/restic_password --verbose --cacert /mnt/usb_hdd/backup/restic/repo/public_key
+
+# create a backup 
+sudo restic backup --repo rest:https://username:$(cat /home/user/restic_template/restic_password)@hosturl:8000 --password-file /home/user/restic_template/restic_password --exclude Downloads --exclude .cache --one-file-system --verbose --exclude-caches --cacert /home/user/public_key /home/ /etc/ /var/
+
+## on client end
+
+### REST SERVER end
+
+
+
