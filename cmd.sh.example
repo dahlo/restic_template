@@ -1,0 +1,16 @@
+# init repo
+restic init \
+    --repo sftp://user@hosturl:2222//mnt/usb_hdd/backup/restic/repo/ \
+    --password-file /home/user/restic_template/restic_password
+
+# backup
+sudo restic backup \
+    --repo sftp://user@hosturl:2222//mnt/usb_hdd/backup/restic/repo/ \
+    --password-file /home/user/restic_template/restic_password \
+    --exclude-file /home/user/restic_template/exclude.txt \
+    --one-file-system \
+    --exclude-caches \
+    --verbose \
+    /home/ \
+    /etc/ \
+    /var/lib/docker/volumes 
