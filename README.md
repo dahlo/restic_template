@@ -1,21 +1,68 @@
 # Restic template
 
-### init
-Decrypt the cmd.sh file using
+### Server setup
+Have a linux server running with SSH access enabled. Install [restic](https://restic.net/) on it. Initiate a new restic repo somewhere on it:
 
 ```bash
-$ gpg -d cmd.sh.gpg
+restic init --repo /srv/restic-repo
 ```
 
-and edit the command to include the locations you want backed up. Then create a new file containing the restic repo password:
+Done, the rest of the work is done by the client. See section below about pruning snapshots though, as it is probably something you want to do.
+
+### Client setup
+Do these steps on the computer you want to backup.
+
+Decrypt the `cmd.sh.gpg` file using if you are me,
 
 ```bash
-$ touch restic_password ; chmod 600 restic_password
-$ echo -n mysecretpassword > restic_password
+gpg -d cmd.sh.gpg
 ```
 
-### usage
-Run the backup command from cmd.sh as a cronjob of the root user daily. Make sure the root user has generated ssh keys and copied the pub key to the remote server for passwordless login, if you are using sftp to connect to the repo.
+or create your own based on the example below.
+
+```bash
+restic backup \
+    --repo sftp:user@host:/path/to/restic_repo/ \
+    --password-file /home/user/.restic_password \
+    --exclude-file /home/user/restic_template/exclude.txt \
+    --one-file-system \
+    --exclude-caches \
+    --verbose \
+    /home/ \
+    /etc/ \
+    /root/ \
+    /var/lib/docker/volumes
+```
+
+Then create a new file containing the same password as for the restic repo you just created on the server:
+
+```bash
+touch restic_password ; chmod 600 restic_password
+echo -n mysecretpassword > ~/.restic_password
+
+# remove your super secret password from the command history
+history -d $((HISTCMD-2))
+```
+
+Run `cmd.sh` as a cronjob daily. Make sure you have generated ssh keys and copied the public key to the remote server for [passwordless login](https://www.google.com/search?q=generate%20ssh%20keys%20passwordless%20login).
+
+```bash
+# in short
+ssh-keygen
+ssh-copy-id user@host.com
+```
 
 
+## Additional things
+
+### Run as root user on client
+If you want to backup places like docker volumes etc, you will have to run `cmd.sh` as the root user as it is the only one who has access to all files. Create the `.restic_password` file in the root user's home folder, setup ssh keys for the root user, and run the cronjob in the root users crontab instead.
+
+### Prune old snapshots
+Set up a cronjob on the server as the user you login in with when running `cmd.sh` that will prune old snapshots. Create a password file just like in the client setup and create and modify the cronjobs below.
+
+```bash
+0 9 * * *  restic check --repo /path/to/restic_repo/ --password-file /home/user/.restic_password
+0 10 * * * restic forget --prune --repo /path/to/restic_repo/ --password-file /home/user/.restic_password --keep-hourly 24 --keep-daily 7 --keep-weekly 4 --keep-monthly 12 --keep-yearly 7
+```
 
