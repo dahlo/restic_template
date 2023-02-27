@@ -39,7 +39,7 @@ restic backup \
 Then create a new file containing the same password as for the restic repo you just created on the server:
 
 ```bash
-touch restic_password ; chmod 600 restic_password
+touch ~/.restic_password ; chmod 600 ~/.restic_password
 echo -n mysecretpassword > ~/.restic_password
 
 # remove your super secret password from the command history
