@@ -17,7 +17,7 @@ Do these steps on the computer you want to backup.
 Decrypt the `cmd.sh.gpg` file using if you are me,
 
 ```bash
-gpg -d cmd.sh.gpg
+gpg -d cmd.sh.gpg > cmd.sh
 ```
 
 or create your own based on the example below.
