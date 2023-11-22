@@ -1,9 +1,9 @@
 # Restic template
 
-This is a Restic template I use for most of my computers. It's mainly meant for me to clone when setting up a new computer, but there is nothing stopping anyone else from using it as well. The file encrypted `cmd.sh.gpg` contains the same type of command as the `restic backup` example below, but with the hostnames and folders that are specific for my setup, and is only meant to be used by me.
+This is a [Restic](https://restic.net/) template I use for most of my computers. It's mainly meant for me to clone when setting up a new computer, but there is nothing stopping anyone else from using it as well. The file encrypted `cmd.sh.gpg` contains the same type of command as the `restic backup` example below, but with the hostnames and folders that are specific for my setup, and is only meant to be used by me.
 
 ## Server setup
-Have a linux server running with SSH access enabled. Install [restic](https://restic.net/) on it. Initiate a new restic repo somewhere on it:
+Have a linux server running with SSH access enabled. [Install restic](https://restic.readthedocs.io) on it. Initiate a new restic repo somewhere on it:
 
 ```bash
 restic init --repo /srv/restic-repo
