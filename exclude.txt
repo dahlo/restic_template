@@ -1,5 +1,6 @@
 /home/*/NoBackup/*
-/home/*/Downloads/*
+#/home/*/Downloads/*
+#/home/*/downloads/*
 
 /home/*/.ecryptfs
 /home/*/.cache
@@ -129,6 +130,7 @@
 /home/*/.config/**/GPUCache
 /home/*/.config/**/ShaderCache
 /home/*/snap/**/.config/**/Cache
+/home/*/snap/**/.cache/
 /home/*/snap/**/.config/**/GPUCache
 /home/*/snap/**/.config/**/ShaderCache
 

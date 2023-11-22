@@ -17,7 +17,7 @@ Do these steps on the computer you want to backup.
 Decrypt the `cmd.sh.gpg` file using if you are me,
 
 ```bash
-gpg -d cmd.sh.gpg
+gpg -d cmd.sh.gpg > cmd.sh
 ```
 
 or create your own based on the example below.
@@ -39,7 +39,7 @@ restic backup \
 Then create a new file containing the same password as for the restic repo you just created on the server:
 
 ```bash
-touch restic_password ; chmod 600 restic_password
+touch ~/.restic_password ; chmod 600 ~/.restic_password
 echo -n mysecretpassword > ~/.restic_password
 
 # remove your super secret password from the command history
@@ -53,6 +53,23 @@ Run `cmd.sh` as a cronjob daily. Make sure you have generated ssh keys and copie
 ssh-keygen
 ssh-copy-id user@host.com
 ```
+
+
+## Mounting the repo and restoring files
+You can mount the repo and browse it as a file structure you can copy files from. On the server:
+
+```bash
+# create an empty directory to be used as mount point
+mkdir mnt
+
+# mount the repo
+restic mount -r /path/to/repo/ mnt
+```
+
+Restic will ask you for your password and then mount the repo. The terminal will be busy keeping the mount alive, and when you are finished you can press `ctrl+c` to unmount it.
+
+If you prefer not to open a new ssh connection to your server just to browser the files, you can send the mount process to the background by pressing `ctrl+z`, and then let the process continue in the background by typing `bg` This will let you browse the files in your terminal. When you are done, simply bring the mount process to the foreground by typing `fg` and then close it down with `ctrl+c` as usual.
+
 
 
 ## Additional things
