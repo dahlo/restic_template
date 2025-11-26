@@ -1,6 +1,6 @@
 /home/*/NoBackup/*
-#/home/*/Downloads/*
-#/home/*/downloads/*
+/home/*/Downloads/*
+/home/*/downloads/*
 
 /home/*/.ecryptfs
 /home/*/.cache
